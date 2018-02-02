@@ -4,6 +4,7 @@ import axios from 'axios';
 import FetchedArtists from '../containers/fetched-artists';
 import {fetchArtists} from '../actions/index'
 import {bindActionCreators} from 'redux'
+import {FormControl,Button,Grid,Row,Col} from 'react-bootstrap';
 
 class SearchItunes extends React.Component {
    constructor(props){
@@ -36,13 +37,24 @@ class SearchItunes extends React.Component {
    }
    render() {
       return (
-         <div>
-            <input type='text' onChange={this.handleQuery} /><br/>
-            <button onClick={()=>this.handleSubmit(this.props)}>Search</button>
-             <br/>
-             <h2>Search Results</h2>
+         <Grid>
+             <Row className="show-grid">
+                 <Col xsOffset={5} style={{marginBottom:10}}>
+                     <h4>Search iTunes</h4>
+                 </Col>
+             </Row>
+             <Row className="show-grid">
+                 <Col md={6} mdOffset={4} style={{marginBottom:10}}>
+                    <FormControl style={{width:'50%'}} type='text' onChange={this.handleQuery} />
+                 </Col>
+             </Row>
+             <Row className="show-grid">
+                 <Col md={6} mdOffset={5}>
+                     <Button bsStyle="primary" onClick={()=>this.handleSubmit(this.props)}>Search</Button>
+                 </Col>
+             </Row>
              <FetchedArtists/>
-         </div>
+         </Grid>
       );
    }
 }

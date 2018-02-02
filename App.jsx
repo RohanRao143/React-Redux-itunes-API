@@ -1,6 +1,9 @@
 import React from 'react';
 import SearchItunes from './components/SearchItunes'
+import { HashRouter,Route,browserHistory} from 'react-router-dom'
 import Login from './components/Login'
+import NavBar from './components/NavBar'
+import Welcome from './components/Welcome'
 
 class App extends React.Component{
     constructor(props){
@@ -24,12 +27,17 @@ class App extends React.Component{
     }
     render(){
         return(
-            <div>
-                {this.state.isLoggedin?
-                    <SearchItunes/>:
-                    <Login loginUser={this.loginUser}/>
+            <HashRouter history={browserHistory}>
+                <switch>
+                    <NavBar isloggedin={this.state.isLoggedin}/>
+                        <Route exact path={'/'} component={Welcome}/>
+                    {this.state.isLoggedin?
+                        <Route path={'/search'} component={SearchItunes}/>:
+                        <Route path={'/login'} render={()=><Login loginUser={this.loginUser}/>} />
                     }
-            </div>
+
+                </switch>
+            </HashRouter>
         )
     }
 }

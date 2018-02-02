@@ -18,6 +18,7 @@ class FetchedArtist extends React.Component{
         }
         return(
             <div>
+                <h2>Search Results</h2>
                 {artists.artists.map((artist)=>{
                     if(artist.collectionName) {
                         return (
